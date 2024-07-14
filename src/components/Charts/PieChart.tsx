@@ -5,19 +5,22 @@ import { ChartOptions, PluginChartOptions } from "chart.js";
 interface PieChartProps {}
 
 const PieChart: FC<PieChartProps> = ({}) => {
+  const data1 = { closed: 66, pending: 33 };
+
   const data = {
     labels: ["closed", "pending"],
     datasets: [
       {
         label: "Appointments logged",
-        data: [45, 55],
-        backgroundColor: ["#008FD6", "#FF0F65"],
+        data: [data1.closed, data1.pending],
+        backgroundColor: ["#FF0F65", "#008FD6"],
       },
     ],
   };
 
   const options = {
     responsive: true,
+
     maintainAspectRatio: false,
     plugins: {
       legend: {
@@ -29,39 +32,28 @@ const PieChart: FC<PieChartProps> = ({}) => {
     },
   };
 
-  //   const plugins = [
-  //     {
-  //       id: "customLabels",
-  //       afterDraw: (chart: any) => {
-  //         const { ctx } = chart;
-  //         chart.data.datasets[0].data.forEach((data: [], index: number) => {
-  //           const meta = chart.getDatasetMeta(0);
-  //           const { x, y, startAngle, endAngle } = meta.data[index];
-  //           const midAngle = startAngle + (endAngle - startAngle) / 2;
-  //           const xLabel = Math.cos(midAngle) * (chart.width / 2.5) + x;
-  //           const yLabel = Math.sin(midAngle) * (chart.height / 2.5) + y;
-  //           const label = `${data}% ${chart.data.labels[index]}`;
-
-  //           ctx.textAlign = midAngle < Math.PI ? "left" : "right";
-  //           ctx.textBaseline = "middle";
-  //           ctx.font = "bold 16px sans-serif";
-  //           ctx.fillStyle = "#000";
-  //           ctx.fillText(`${data}%`, xLabel, yLabel - 10);
-  //           ctx.font = "normal 12px sans-serif";
-  //           ctx.fillText(chart.data.labels[index], xLabel, yLabel + 10);
-  //           ctx.strokeStyle = "#ddd";
-  //           ctx.lineWidth = 2;
-  //           ctx.beginPath();
-  //           ctx.moveTo(x, y);
-  //           ctx.lineTo(xLabel, yLabel);
-  //           ctx.stroke();
-  //         });
-  //       },
-  //     },
-  //   ];
   return (
     <div className="h-full flex justify-center items-center">
-      <Pie data={data} options={options} />
+      <div className="absolute z-0">
+        <div className="translate-y-[-2.5vh]">
+          <h1 className="absolute right-0 text-3xl font-bold">
+            {data1.pending}%
+          </h1>
+          <h1 className=" absolute left-0 text-3xl font-bold">
+            {data1.closed}%
+          </h1>
+        </div>
+        <h1>
+          ----------------------------------------------------------------
+        </h1>
+        <div className="translate-y-[-0.5vh]">
+          <h1 className=" absolute right-0 text-md font-bold">Pending</h1>
+          <h1 className="absolute left-0 text-md font-bold">Closed</h1>
+        </div>
+      </div>
+      <div className="h-64 z-10 ">
+        <Pie data={data} options={options} />
+      </div>
     </div>
   );
 };

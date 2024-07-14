@@ -1,15 +1,7 @@
 "use client";
 import { FC } from "react";
-import {
-  Chart,
-  ArcElement,
-  Legend,
-  Tooltip,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from "chart.js";
-import { Bar, Doughnut } from "react-chartjs-2";
+
+import { Bar } from "react-chartjs-2";
 
 interface BarProps {}
 
@@ -42,12 +34,7 @@ const BarChart: FC<BarProps> = ({}) => {
     indexAxis: "x" as const,
     responsive: true,
     maintainAspectRatio: false,
-    scale: {
-      y: {
-        beginAtZero: true,
-        max: 500,
-      },
-    },
+
     plugins: {
       legend: {
         display: false,

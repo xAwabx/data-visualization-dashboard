@@ -35,7 +35,7 @@ const Top: FC<TopProps> = ({}) => {
   ];
 
   return (
-    <div className="flex flex-row gap-2  w-full bg-pink-500">
+    <div className="flex flex-row gap-2  w-full bg-gray-300">
       {cardData.map((obj, i) => (
         <div
           key={i}
